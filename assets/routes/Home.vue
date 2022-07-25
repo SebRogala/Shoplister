@@ -1,13 +1,13 @@
 <script>
 export default {
+    name: 'Home',
     data() {
         return {
-            message: 'Hello World!'
         }
     }
 }
 </script>
 
 <template>
-    <h1>{{ message }}</h1>
+    Home
 </template>
