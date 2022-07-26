@@ -14,7 +14,11 @@ import './bootstrap';
 import { createApp } from 'vue';
 import router from "./router";
 
-const app = createApp({template: '<router-view></router-view>'});
+import vuetify from './plugins/vuetify'
 
-app.use(router)
-app.mount('#app');
+import Vue from './App'
+
+createApp(Vue)
+  .use(router)
+  .use(vuetify)
+  .mount('#app');

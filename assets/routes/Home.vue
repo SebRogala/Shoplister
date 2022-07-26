@@ -9,5 +9,7 @@ export default {
 </script>
 
 <template>
-    Home
+    <v-alert
+        type="success"
+    >Testing components</v-alert>
 </template>
