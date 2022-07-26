@@ -8,9 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BaseVueAction extends AbstractController
 {
+    #[Route("/",    name: "vue_home",    methods: ["GET"])]
     #[Route("/about",    name: "vue_about",    methods: ["GET"])]
     public function renderBaseTemplate(): Response
     {
-        return $this->render('base.html.twig');
+        return $this->render('vue.html.twig');
     }
 }
