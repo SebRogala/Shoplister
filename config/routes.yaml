@@ -1,9 +1,5 @@
 controllers:
-    resource: ../src/Controller/
-    type: attribute
-
-actions:
-    resource: ../src/Action
+    resource: ../src/Presentation/Controller/
     type: attribute
 
 app_logout:

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Action;
+namespace App\Presentation\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BaseVueAction extends AbstractController
+class BaseVueController extends AbstractController
 {
     #[Route("/",    name: "vue_home",    methods: ["GET"])]
     #[Route("/about",    name: "vue_about",    methods: ["GET"])]
