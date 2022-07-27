@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\User
+                class: App\Domain\User
                 property: email
     firewalls:
         dev:
@@ -22,7 +22,7 @@ security:
                 check_path: app_login
             logout:
                 path: app_logout
-            custom_authenticator: App\Security\GoogleAuthenticator
+            custom_authenticator: App\Infrastructure\Security\GoogleAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

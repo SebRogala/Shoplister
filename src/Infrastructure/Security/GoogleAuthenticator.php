@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Security;
+namespace App\Infrastructure\Security;
 
-use App\Entity\User;
+use App\Domain\User;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
