@@ -21,6 +21,6 @@ class LoginGoogleController extends AbstractController
     #[Route('/connect/google/check', name: 'connect_google_check')]
     public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
     {
-        return $this->redirectToRoute('app_home');
+        return $this->redirect('/');
     }
 }
