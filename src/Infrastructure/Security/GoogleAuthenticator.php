@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Security;
 
 use App\Domain\User;
+use App\Infrastructure\Uuid;
 use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\Provider\GoogleClient;
@@ -47,7 +48,7 @@ class GoogleAuthenticator extends AbstractAuthenticator
                     return $existingUser;
                 }
 
-                $user = new User();
+                $user = new User(Uuid::new());
                 $user->setName($googleUser->getName());
                 $user->setGoogleId($googleUser->getId());
                 $user->setEmail($email);
