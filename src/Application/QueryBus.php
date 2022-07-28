@@ -2,23 +2,26 @@
 
 namespace App\Application;
 
+use Doctrine\DBAL\Connection;
+
 class QueryBus
 {
-    /** @var array */
-    private array $queryHandlers = [];
-
-    public function handle($query)
+    public function __construct(private Connection $connection, private string $queryDriver)
     {
-        $className = (new \ReflectionClass($query))->getShortName();
-        $className = sprintf('%sHandler', $className);
-        $queryHandler = $this->queryHandlers[$className];
-
-        return $queryHandler->handle($query);
     }
 
-    public function register($queryHandler): void
+    public function handle($query, string $queryDriver = null)
     {
-        $className = (new \ReflectionClass($queryHandler))->getShortName();
-        $this->queryHandlers[$className] = $queryHandler;
+        $queryDriver = $queryDriver ?? $this->queryDriver;
+        $queryDriver = ucfirst(strtolower($queryDriver));
+
+        $queryReflection = new \ReflectionClass($query);
+
+        $queryName = $queryReflection->getShortName();
+        $domainName = array_reverse(explode('\\', $queryReflection->getNamespaceName()))[0];
+
+        $className = sprintf('App\Infrastructure\%s\Query\%s%s', $domainName, $queryDriver, $queryName);
+
+        return new $className($this->connection);
     }
 }
