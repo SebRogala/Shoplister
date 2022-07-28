@@ -4,15 +4,21 @@ namespace App\Application;
 
 class CommandBus
 {
+    /** @var array */
+    private $commandHandlers = [];
+
     public function handle($command)
     {
-        $commandReflection = new \ReflectionClass($command);
+        $className = (new \ReflectionClass($command))->getShortName();
+        $className = sprintf('%sHandler', $className);
+        $commandHandler = $this->commandHandlers[$className];
 
-        $handlerClassName = sprintf(
-            '%sHandler',
-            $commandReflection->getName()
-        );
+        return $commandHandler->handle($command);
+    }
 
-        return (new $handlerClassName())->handle($command);
+    public function register($commandHandler)
+    {
+        $className = (new \ReflectionClass($commandHandler))->getShortName();
+        $this->commandHandlers[$className] = $commandHandler;
     }
 }
