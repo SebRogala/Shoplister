@@ -14,8 +14,9 @@ class CreateShoppingListHandler
     public function handle(CreateShoppingList $command): void
     {
         $shoppingList = new ShoppingList(
-            $command->isClosed(),
-            $command->name()
+            $command->owner(),
+            $command->name(),
+            $command->isClosed()
         );
 
         $this->shoppingListRepository->add($shoppingList, true);

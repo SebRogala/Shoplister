@@ -3,6 +3,7 @@
 namespace App\Domain;
 
 use App\Infrastructure\User\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,12 +30,21 @@ class User implements UserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $googleId = null;
 
+    #[ORM\OneToMany(
+        mappedBy: "owner",
+        targetEntity: "ShoppingList",
+        cascade: ["persist", "remove", "merge"]
+    )]
+    public $shoppingLists;
+
     /**
      * @param string|null $id
      */
     public function __construct(?string $id)
     {
         $this->id = $id;
+
+        $this->shoppingLists = new ArrayCollection();
     }
 
     public function getId(): ?int

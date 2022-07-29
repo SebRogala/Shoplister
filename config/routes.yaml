@@ -5,3 +5,7 @@ controllers:
 app_logout:
     path: /logout
     methods: GET
+
+shopping_list_actions:
+    resource: ../src/Presentation/ShoppingList/Action
+    type: attribute

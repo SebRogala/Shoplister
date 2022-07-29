@@ -4,7 +4,7 @@ namespace App\Application\Command\ShoppingList;
 
 class CreateShoppingList
 {
-    public function __construct(private ?bool $isClosed, private ?string $name){}
+    public function __construct(private string $owner, private ?string $name, private ?bool $isClosed){}
 
     /**
      * @return bool|null
@@ -20,5 +20,13 @@ class CreateShoppingList
     public function name(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function owner(): string
+    {
+        return $this->owner;
     }
 }
