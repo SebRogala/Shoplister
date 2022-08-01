@@ -12,10 +12,12 @@ import { createApp } from 'vue';
 import router from "./router";
 
 import vuetify from './plugins/vuetify'
+import api from "./plugins/api";
 
 import Vue from './App'
 
 createApp(Vue)
   .use(router)
   .use(vuetify)
+  .use(api)
   .mount('#app');

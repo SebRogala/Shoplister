@@ -3,6 +3,17 @@ export default {
     name: 'Home',
     data() {
         return {
+            listName: "",
+        }
+    },
+    methods: {
+        addList() {
+            // this.$api.post('/shopping_list', this.$api.formData({name: this.listName})).then(res => {
+            //     console.log(res);
+            // });
+        },
+        getList() {
+            // this.axios.get()
         }
     }
 }
@@ -14,8 +25,12 @@ export default {
             type="success"
         >Testing components</v-alert>
 
-        <router-link to="/about">
-            <v-btn>About</v-btn>
-        </router-link>
+        <v-text-field
+            label="List name"
+            variant="outlined"
+            v-model="listName"
+        ></v-text-field>
+
+        <v-btn @click="addList">Dodaj</v-btn>
     </div>
 </template>
