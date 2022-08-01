@@ -25,11 +25,16 @@ class ShoppingList
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "shoppingLists")]
     private string $owner;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
+
     public function __construct(string $owner, ?string $name, ?bool $isClosed)
     {
         $this->id = Uuid::new();
         $this->isClosed = $isClosed;
         $this->name = $name;
         $this->owner = $owner;
+
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
