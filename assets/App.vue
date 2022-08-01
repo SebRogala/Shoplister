@@ -9,6 +9,10 @@ export default {
                     value: '/'
                 },
                 {
+                    title: "Shopping List",
+                    value: '/shopping-list'
+                },
+                {
                     title: "About",
                     value: '/about'
                 }

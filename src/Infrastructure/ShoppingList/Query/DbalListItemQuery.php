@@ -15,12 +15,26 @@ class DbalListItemQuery implements ListItemQuery
     public function item(string $id): ListItemView
     {
         $res = $this->connection->fetchAssociative(
-            "SELECT name, is_closed FROM shopping_list WHERE id = :id",
+            "SELECT name, is_closed, createdAt FROM shopping_list WHERE id = :id",
             [
                 'id' => $id,
             ]
         );
 
         return new ListItemView($res['name']);
+    }
+
+    public function findAll(string $ownerId): ?array
+    {
+        $res = $this->connection->fetchAllAssociative(
+            "SELECT name, is_closed, created_at FROM shopping_list WHERE owner = :id",
+            [
+                'id' => $ownerId,
+            ]
+        );
+
+        return array_map(function (array $list) {
+            return new ListItemView($list['name']);
+        }, $res);
     }
 }
