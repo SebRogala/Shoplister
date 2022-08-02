@@ -2,9 +2,11 @@
 
 namespace App\Application\Command\ShoppingList;
 
+use App\Domain\User;
+
 class CreateShoppingList
 {
-    public function __construct(private string $owner, private ?string $name, private ?bool $isClosed){}
+    public function __construct(private User $owner, private ?string $name, private ?bool $isClosed){}
 
     /**
      * @return bool|null
@@ -23,9 +25,9 @@ class CreateShoppingList
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function owner(): string
+    public function owner(): User
     {
         return $this->owner;
     }

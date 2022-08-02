@@ -7,22 +7,30 @@ use App\Application\Query\QueryView;
 class ListItemView implements QueryView
 {
     public function __construct(
-        private readonly string $name
+        private readonly string $id,
+        private readonly string $name,
+        private readonly bool $isClosed,
+        private readonly \DateTimeImmutable $createdAt
     ) {
-    }
-
-    /**
-     * @return string
-     */
-    public function name(): string
-    {
-        return $this->name;
     }
 
     public function toArray(): array
     {
         return [
-            'name' => $this->name(),
+            'id' => $this->id,
+            'name' => $this->name,
+            'isClosed' => $this->isClosed,
+            'createdAt' => $this->createdAt->format(\DateTime::ATOM)
         ];
+    }
+
+    public static function fromArray(array $data): QueryView
+    {
+        return new self(
+            $data['id'],
+            $data['name'],
+            $data['is_closed'],
+            new \DateTimeImmutable($data['created_at'])
+        );
     }
 }

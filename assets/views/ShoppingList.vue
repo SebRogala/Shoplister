@@ -1,28 +1,46 @@
 <template>
-    <v-btn @click="getList">pobierz</v-btn>
+    <v-btn @click="loadShoppingList">pobierz</v-btn>
+
+    <v-text-field
+        label="List name"
+        variant="outlined"
+        v-model="newShoppingListName"
+    ></v-text-field>
+
+    <v-btn @click="createShoppingList">Dodaj</v-btn>
+
+    <ShoppingLists
+        :items="shoppingList"
+    ></ShoppingLists>
 </template>
 
 <script>
+import ShoppingLists from "../components/ShoppingList/ShoppingLists";
+
 export default {
     name: 'ShoppingList',
+    components: {
+        ShoppingLists
+    },
     data() {
         return {
-            shoppingList: []
+            shoppingList: [],
+            newShoppingListName: "",
         }
     },
     mounted() {
         // this.getList();
     },
     methods: {
-        addList() {
-            // this.$api.post('/shopping_list', this.$api.formData({name: this.listName})).then(res => {
-            //     console.log(res);
-            // });
+        createShoppingList() {
+            this.$api.post('/shopping_list', this.$api.formData({name: this.newShoppingListName})).then(res => {
+                this.loadShoppingList();
+                this.newShoppingListName = "";
+            });
         },
-        getList() {
+        loadShoppingList() {
             this.$api.get('/shopping-list').then(res => {
-                //TODO propagate this.shoppingList
-                console.log(res.data)
+                this.shoppingList = res.data;
             });
         }
     }

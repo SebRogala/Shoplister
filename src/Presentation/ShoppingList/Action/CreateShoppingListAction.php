@@ -16,7 +16,7 @@ class CreateShoppingListAction extends AbstractController
     {
         $name = $request->get('name');
 
-        $command = new CreateShoppingList($this->getUser()->getId(), $name, false);
+        $command = new CreateShoppingList($this->getUser(), $name, false);
         $commandBus->handle($command);
 
         return new Response(null, 201);
