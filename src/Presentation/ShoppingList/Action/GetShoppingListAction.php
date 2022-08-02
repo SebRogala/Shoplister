@@ -16,6 +16,10 @@ class GetShoppingListAction extends AbstractController
     {
         $items = $listItemQuery->findAll($this->getUser()->getId());
         //TODO extract values from array
-        return new JsonResponse($items);
+        return new JsonResponse(array_map(function ($item) {
+            return [
+                'name' => $item->name()
+            ];
+        }, $items));
     }
 }
