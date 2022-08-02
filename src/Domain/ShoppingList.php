@@ -21,7 +21,7 @@ class ShoppingList
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: 'uuid', nullable: false)]
+    #[ORM\JoinColumn(nullable: false)]
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "shoppingLists")]
     private string $owner;
 
