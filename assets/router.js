@@ -2,7 +2,7 @@ import {createRouter, createWebHashHistory} from "vue-router";
 
 import Home from "./views/Home";
 import About from "./views/About";
-import ShoppingList from "./views/ShoppingList";
+import ShoppingList from "./views/ShoppingList/ShoppingList";
 
 const routes = [
   { path: '/', component: Home },

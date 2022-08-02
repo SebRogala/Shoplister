@@ -1,27 +1,28 @@
 <template>
-    <v-btn @click="loadShoppingList">pobierz</v-btn>
-
     <v-text-field
-        label="List name"
+        label="Nazwa listy"
         variant="outlined"
+        density="comfortable"
+        hide-details="auto"
         v-model="newShoppingListName"
     ></v-text-field>
 
     <v-btn @click="createShoppingList">Dodaj</v-btn>
 
-    <ShoppingLists
-        :items="shoppingList"
-    ></ShoppingLists>
+    <v-list>
+        <v-list-item
+            v-for="(item, i) in shoppingList"
+            :key="i"
+            :value="item"
+        >
+            <v-list-item-title><template v-if="item.name">{{ item.name }}, </template>({{ $datetime(item.createdAt) }})</v-list-item-title>
+        </v-list-item>
+    </v-list>
 </template>
 
 <script>
-import ShoppingLists from "../components/ShoppingList/ShoppingLists";
-
 export default {
     name: 'ShoppingList',
-    components: {
-        ShoppingLists
-    },
     data() {
         return {
             shoppingList: [],
@@ -29,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        // this.getList();
+        this.loadShoppingList();
     },
     methods: {
         createShoppingList() {
