@@ -14,8 +14,12 @@
             v-for="(item, i) in shoppingList"
             :key="i"
             :value="item"
+            :to="{name: 'shopping-list-id', params: {id: item.id}}"
         >
-            <v-list-item-title><template v-if="item.name">{{ item.name }}, </template>({{ $datetime(item.createdAt) }})</v-list-item-title>
+            <v-list-item-title>
+                <template v-if="item.name">{{ item.name }},</template>
+                ({{ $datetime(item.createdAt) }})
+            </v-list-item-title>
         </v-list-item>
     </v-list>
 </template>
