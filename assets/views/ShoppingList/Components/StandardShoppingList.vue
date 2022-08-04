@@ -8,7 +8,7 @@
                     <v-col class="d-flex align-center">
                         <v-btn
                             class="mr-3"
-                            icon="mdi-close"
+                            icon="mdi-check"
                             size="x-small"
                             variant="tonal"
                             @click.stop="markAsTaken"
