@@ -3,3 +3,12 @@ body {
 }
 
 
+.v-switch--label-below .v-selection-control {
+    flex-direction: column;
+    text-align: center;
+}
+
+.v-switch--label-below .v-selection-control label {
+    margin-top: -10px;
+    display: block;
+}
