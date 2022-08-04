@@ -1,24 +1,15 @@
 <template>
-    <v-row
-        class="shopping-list__row"
-        v-for="item in x"
-        dense
-    >
-        <v-col>
-            <v-sheet>
-                {{ item.name }}
-            </v-sheet>
-        </v-col>
-
-        <v-col cols="3">
-            {{ item.quantity }} {{ item.unit }}
-        </v-col>
-    </v-row>
+    <StandardShoppingList
+        :value="x"
+    ></StandardShoppingList>
 </template>
 
 <script>
+import StandardShoppingList from "./Components/StandardShoppingList";
+
 export default {
     name: 'ShoppingListId',
+    components: {StandardShoppingList},
     data() {
         return {
             x: [
@@ -50,7 +41,5 @@ export default {
 </script>
 
 <style>
-.shopping-list__row {
-    border-bottom: black solid 1px;
-}
+
 </style>
