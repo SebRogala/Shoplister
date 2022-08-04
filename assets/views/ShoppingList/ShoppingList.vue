@@ -1,15 +1,22 @@
 <template>
-    <v-text-field
-        label="Nazwa listy"
-        variant="outlined"
-        density="comfortable"
-        hide-details="auto"
-        v-model="newShoppingListName"
-    ></v-text-field>
+    <v-row class="align-center">
+        <v-btn
+            class="ma-2"
+            color="#81C784"
+            @click="createShoppingList"
+            icon="mdi-plus"
+        ></v-btn>
+        <v-text-field
+            class="mr-2"
+            label="Nazwa listy (opcjonalne)"
+            variant="outlined"
+            density="comfortable"
+            hide-details="auto"
+            v-model="newShoppingListName"
+        ></v-text-field>
+    </v-row>
 
-    <v-btn @click="createShoppingList">Dodaj</v-btn>
-
-    <v-list>
+    <v-list class="mt-4">
         <v-list-item
             v-for="(item, i) in shoppingList"
             :key="i"
@@ -17,8 +24,8 @@
             :to="{name: 'shopping-list-id', params: {id: item.id}}"
         >
             <v-list-item-title>
-                <template v-if="item.name">{{ item.name }},</template>
-                ({{ $datetime(item.createdAt) }})
+                <template v-if="item.name">{{ item.name }} -</template>
+                {{ $datetime(item.createdAt) }}
             </v-list-item-title>
         </v-list-item>
     </v-list>
