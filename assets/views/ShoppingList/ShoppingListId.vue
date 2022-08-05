@@ -21,7 +21,6 @@
             <v-card-item>
                 <v-row>
                     <v-col>
-
                         <v-text-field
                             class="mt-3"
                             variant="outlined"
@@ -40,6 +39,38 @@
                             density="comfortable"
                             hide-details="auto"
                             v-model="newItemQuantity"
+                        ></v-text-field>
+                    </v-col>
+                </v-row>
+
+                    <v-item-group
+                        class="v-row shopping-list__new__quantity"
+                    >
+                        <v-col class="d-flex flex-column">
+                            <NewShoppingListItemUnit value="l" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                            <NewShoppingListItemUnit value="ml" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        </v-col>
+                        <v-col class="d-flex flex-column">
+                            <NewShoppingListItemUnit value="g" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                            <NewShoppingListItemUnit value="kg" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        </v-col>
+                        <v-col class="d-flex flex-column">
+                            <NewShoppingListItemUnit value="szt" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                            <NewShoppingListItemUnit value="opak" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        </v-col>
+                        <v-col class="d-flex flex-column">
+                            <NewShoppingListItemUnit value="małe" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                            <NewShoppingListItemUnit value="duże" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        </v-col>
+                    </v-item-group>
+                <v-row>
+                    <v-col>
+                        <v-text-field
+                            variant="outlined"
+                            label="Jednostka"
+                            density="comfortable"
+                            hide-details="auto"
+                            v-model="newItemUnit"
                         ></v-text-field>
                     </v-col>
                 </v-row>
@@ -63,15 +94,17 @@
 
 <script>
 import StandardShoppingList from "./Components/StandardShoppingList";
+import NewShoppingListItemUnit from "./Components/NewShoppingListItemUnit";
 
 export default {
     name: 'ShoppingListId',
-    components: {StandardShoppingList},
+    components: {StandardShoppingList, NewShoppingListItemUnit},
     data() {
         return {
             addMode: true,
             newItemName: "",
             newItemQuantity: null,
+            newItemUnit: "",
             x: [
                 {
                     name: 'Cukier',
@@ -96,10 +129,17 @@ export default {
 
             ]
         }
+    },
+    methods: {
+        pickNewItemUnit(unit) {
+            this.newItemUnit = unit;
+        },
     }
 }
 </script>
 
 <style>
-
+    .shopping-list__new__quantity button{
+        text-transform: lowercase;
+    }
 </style>
