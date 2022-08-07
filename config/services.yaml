@@ -26,5 +26,6 @@ services:
     App\Application\CommandBus:
         calls:
             - [ register, [ '@App\Application\Command\ShoppingList\CreateShoppingListHandler' ] ]
+            - [ register, [ '@App\Application\Command\ShoppingList\CreateShoppingListItemHandler' ] ]
 
     App\Application\Query\ShoppingList\ListItemQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemQuery'

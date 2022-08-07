@@ -18,6 +18,7 @@
             v-show="addMode"
             transition="slide-y-transition"
         >
+            <v-alert type="error" v-if="isHttpError">{{ httpError }}</v-alert>
             <v-card-item>
                 <v-row>
                     <v-col>
@@ -43,26 +44,32 @@
                     </v-col>
                 </v-row>
 
-                    <v-item-group
-                        class="v-row shopping-list__new__quantity"
-                    >
-                        <v-col class="d-flex flex-column">
-                            <NewShoppingListItemUnit value="l" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                            <NewShoppingListItemUnit value="ml" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                        </v-col>
-                        <v-col class="d-flex flex-column">
-                            <NewShoppingListItemUnit value="g" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                            <NewShoppingListItemUnit value="kg" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                        </v-col>
-                        <v-col class="d-flex flex-column">
-                            <NewShoppingListItemUnit value="szt" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                            <NewShoppingListItemUnit value="opak" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                        </v-col>
-                        <v-col class="d-flex flex-column">
-                            <NewShoppingListItemUnit value="małe" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                            <NewShoppingListItemUnit value="duże" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
-                        </v-col>
-                    </v-item-group>
+                <v-item-group
+                    class="v-row shopping-list__new__quantity"
+                >
+                    <v-col class="d-flex flex-column">
+                        <NewShoppingListItemUnit value="l" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        <NewShoppingListItemUnit value="ml"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                    </v-col>
+                    <v-col class="d-flex flex-column">
+                        <NewShoppingListItemUnit value="g" @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        <NewShoppingListItemUnit value="kg"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                    </v-col>
+                    <v-col class="d-flex flex-column">
+                        <NewShoppingListItemUnit value="szt"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        <NewShoppingListItemUnit value="opak"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                    </v-col>
+                    <v-col class="d-flex flex-column">
+                        <NewShoppingListItemUnit value="małe"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                        <NewShoppingListItemUnit value="duże"
+                                                 @pickNewItemUnit="pickNewItemUnit"></NewShoppingListItemUnit>
+                    </v-col>
+                </v-item-group>
                 <v-row>
                     <v-col>
                         <v-text-field
@@ -80,6 +87,7 @@
                 <v-btn
                     variant="tonal"
                     color="success"
+                    @click="addNewShoppingListItem"
                 >
                     Dodaj
                 </v-btn>
@@ -101,6 +109,8 @@ export default {
     components: {StandardShoppingList, NewShoppingListItemUnit},
     data() {
         return {
+            isHttpError: false,
+            httpError: "",
             addMode: true,
             newItemName: "",
             newItemQuantity: null,
@@ -134,12 +144,31 @@ export default {
         pickNewItemUnit(unit) {
             this.newItemUnit = unit;
         },
+        addNewShoppingListItem() {
+            this.isHttpError = false;
+            this.$api.post('/shopping-list/' + this.$route.params.id + '/item', this.$api.formData({
+                name: this.newItemName,
+                quantity: this.newItemQuantity,
+                unit: this.newItemUnit,
+            })).then(() => {
+                this.loadShoppingListItems();
+                this.newItemName = "";
+                this.newItemQuantity = null;
+                this.newItemUnit = "";
+            }).catch(reason => {
+                this.isHttpError = true;
+                this.httpError = reason.response.data;
+            });
+        },
+        loadShoppingListItems() {
+            // TODO implement
+        }
     }
 }
 </script>
 
 <style>
-    .shopping-list__new__quantity button{
-        text-transform: lowercase;
-    }
+.shopping-list__new__quantity button {
+    text-transform: lowercase;
+}
 </style>
