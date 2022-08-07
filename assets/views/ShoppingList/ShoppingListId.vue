@@ -127,7 +127,7 @@ export default {
         },
         addNewShoppingListItem() {
             this.isHttpError = false;
-            this.$api.post('/shopping-list/' + this.$route.params.id + '/item', this.$api.formData({
+            this.$api.post(`/shopping-list/${this.$route.params.id}/item`, this.$api.formData({
                 name: this.newItemName,
                 quantity: this.newItemQuantity,
                 unit: this.newItemUnit,
@@ -142,7 +142,7 @@ export default {
             });
         },
         loadShoppingListItems() {
-            this.$api.get('/shopping-list/' + this.$route.params.id + '/items').then(res => {
+            this.$api.get(`/shopping-list/${this.$route.params.id}/items`).then(res => {
                 this.shoppingListItems = res.data;
             });
         }
