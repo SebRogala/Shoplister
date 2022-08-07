@@ -96,7 +96,7 @@
     </v-scroll-y-transition>
 
     <StandardShoppingList
-        :value="x"
+        :value="shoppingListItems"
     ></StandardShoppingList>
 </template>
 
@@ -115,30 +115,11 @@ export default {
             newItemName: "",
             newItemQuantity: null,
             newItemUnit: "",
-            x: [
-                {
-                    name: 'Cukier',
-                    quantity: 5,
-                    unit: "kg"
-                },
-                {
-                    name: 'Szynka drobiowa',
-                    quantity: 100,
-                    unit: "g"
-                },
-                {
-                    name: 'Jakaś bardzo długa nazwa jakiegoś produktu',
-                    quantity: 67676,
-                    unit: "szt"
-                },
-                {
-                    name: 'Mleko',
-                    quantity: 2,
-                    unit: "szt"
-                },
-
-            ]
+            shoppingListItems: []
         }
+    },
+    mounted() {
+        this.loadShoppingListItems();
     },
     methods: {
         pickNewItemUnit(unit) {
@@ -161,7 +142,9 @@ export default {
             });
         },
         loadShoppingListItems() {
-            // TODO implement
+            this.$api.get('/shopping-list/' + this.$route.params.id + '/items').then(res => {
+                this.shoppingListItems = res.data;
+            });
         }
     }
 }
