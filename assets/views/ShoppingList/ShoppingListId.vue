@@ -97,6 +97,7 @@
 
     <StandardShoppingList
         :value="shoppingListItems"
+        @itemChanged="loadShoppingListItems"
     ></StandardShoppingList>
 </template>
 
@@ -111,7 +112,7 @@ export default {
         return {
             isHttpError: false,
             httpError: "",
-            addMode: true,
+            addMode: false,
             newItemName: "",
             newItemQuantity: null,
             newItemUnit: "",

@@ -54,4 +54,10 @@ class ShoppingListItem
         $this->unit = $unit;
         $this->list = $list;
     }
+
+    public function toggleIsDone(): void
+    {
+        $this->isDone = !$this->isDone;
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 }
