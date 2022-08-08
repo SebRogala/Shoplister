@@ -19,6 +19,7 @@ class CreateShoppingListItemAction extends AbstractController
             $request->get('name'),
             (float)$request->get('quantity'),
             $request->get('unit'),
+            $request->get('section'),
         );
 
         try {

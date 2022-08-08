@@ -8,7 +8,8 @@ class CreateShoppingListItem
         private string $listId,
         private string $name,
         private float $quantity,
-        private string $unit
+        private string $unit,
+        private string $section,
     ) {
     }
 
@@ -44,4 +45,11 @@ class CreateShoppingListItem
         return $this->unit;
     }
 
+    /**
+     * @return string
+     */
+    public function section(): string
+    {
+        return $this->section;
+    }
 }

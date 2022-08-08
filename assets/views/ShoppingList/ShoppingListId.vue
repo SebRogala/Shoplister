@@ -42,6 +42,16 @@
                             v-model="newItemQuantity"
                         ></v-text-field>
                     </v-col>
+                    <v-col cols="8">
+                        <v-autocomplete
+                            variant="outlined"
+                            label="Dział"
+                            density="comfortable"
+                            hide-details="auto"
+                            v-model="newItemSection"
+                            :items="possibleSections"
+                        ></v-autocomplete>
+                    </v-col>
                 </v-row>
 
                 <v-item-group
@@ -116,7 +126,9 @@ export default {
             newItemName: "",
             newItemQuantity: null,
             newItemUnit: "",
-            shoppingListItems: []
+            newItemSection: "",
+            shoppingListItems: [],
+            possibleSections: ['Pieczywo', 'Przekąski słodkie', 'Owoce', 'Warzywa', 'Wędliny', 'Mięso']
         }
     },
     mounted() {
@@ -132,6 +144,7 @@ export default {
                 name: this.newItemName,
                 quantity: this.newItemQuantity,
                 unit: this.newItemUnit,
+                section: this.newItemSection,
             })).then(() => {
                 this.loadShoppingListItems();
                 this.newItemName = "";

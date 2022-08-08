@@ -22,7 +22,8 @@ class CreateShoppingListItemHandler
             $list,
             $command->name(),
             $command->quantity(),
-            $command->unit()
+            $command->unit(),
+            $command->section()
         );
 
         $this->shoppingListItemRepository->add($shoppingListItem, true);
