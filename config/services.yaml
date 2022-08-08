@@ -28,6 +28,7 @@ services:
             - [ register, [ '@App\Application\Command\ShoppingList\CreateShoppingListHandler' ] ]
             - [ register, [ '@App\Application\Command\ShoppingList\CreateShoppingListItemHandler' ] ]
             - [ register, [ '@App\Application\Command\ShoppingList\ToggleIsDoneOnShoppingListItemHandler' ] ]
+            - [ register, [ '@App\Application\Command\Shop\CreateShopHandler' ] ]
 
     App\Application\Query\ShoppingList\ListItemQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemQuery'
     App\Application\Query\ShoppingList\ListItemsQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemsQuery'

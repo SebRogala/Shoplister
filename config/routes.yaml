@@ -9,3 +9,7 @@ app_logout:
 shopping_list_actions:
     resource: ../src/Presentation/ShoppingList/Action
     type: attribute
+
+shop_actions:
+    resource: ../src/Presentation/Shop/Action
+    type: attribute

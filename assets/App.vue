@@ -43,12 +43,12 @@ export default {
                     value: '/'
                 },
                 {
-                    title: "Shopping List",
+                    title: "Listy zakupów",
                     value: '/shopping-list'
                 },
                 {
-                    title: "About",
-                    value: '/about'
+                    title: "Sklepy",
+                    value: '/shop'
                 }
             ]
         }
