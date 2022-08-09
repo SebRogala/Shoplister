@@ -36,10 +36,13 @@
         <thead>
         <tr>
             <th class="text-left">
-                Name
+                Nazwa
             </th>
             <th class="text-left">
-                Address
+                Adres
+            </th>
+            <th class="text-left">
+                Akcje
             </th>
         </tr>
         </thead>
@@ -50,6 +53,15 @@
         >
             <td>{{ item.name }}</td>
             <td>{{ item.address }}</td>
+            <td>
+                <v-btn
+                    size="x-small"
+                    variant="tonal"
+                    icon="mdi-tune"
+                    :to="{name: 'shop-config', params: {id: item.id}}"
+                >
+                </v-btn>
+            </td>
         </tr>
         </tbody>
     </v-table>

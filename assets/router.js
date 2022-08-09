@@ -5,6 +5,8 @@ import About from "./views/About";
 import ShoppingList from "./views/ShoppingList/ShoppingList";
 import ShoppingListId from "./views/ShoppingList/ShoppingListId";
 import Shops from "./views/Shop/Shops";
+import ShopConfig from "./views/Shop/ShopConfig";
+
 
 
 const routes = [
@@ -12,7 +14,8 @@ const routes = [
     {path: '/about', component: About},
     {path: '/shopping-list', name: "shopping-list", component: ShoppingList},
     {path: '/shopping-list/:id', name: "shopping-list-id", component: ShoppingListId},
-    {path: '/shop', component: Shops},
+    {path: '/shop',  name: "shops",component: Shops},
+    {path: '/shop/:id/config', name: "shop-config", component: ShopConfig},
 ]
 
 const router = createRouter({
