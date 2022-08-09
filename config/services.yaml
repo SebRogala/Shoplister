@@ -32,3 +32,4 @@ services:
 
     App\Application\Query\ShoppingList\ListItemQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemQuery'
     App\Application\Query\ShoppingList\ListItemsQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemsQuery'
+    App\Application\Query\Shop\ShopsQuery: '@App\Infrastructure\Shop\Query\DbalShopsQuery'
