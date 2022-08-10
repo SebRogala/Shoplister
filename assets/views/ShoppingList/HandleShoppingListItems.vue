@@ -95,19 +95,19 @@
         </v-card>
     </v-scroll-y-transition>
 
-    <StandardShoppingList
+    <HandlingShoppingList
         :value="shoppingListItems"
         @itemChanged="loadShoppingListItems"
-    ></StandardShoppingList>
+    ></HandlingShoppingList>
 </template>
 
 <script>
-import StandardShoppingList from "./Components/StandardShoppingList";
 import NewShoppingListItemUnit from "./Components/NewShoppingListItemUnit";
+import HandlingShoppingList from "./Components/HandlingShoppingList";
 
 export default {
     name: 'HandleShoppingListItems',
-    components: {StandardShoppingList, NewShoppingListItemUnit},
+    components: {HandlingShoppingList, NewShoppingListItemUnit},
     data() {
         return {
             isHttpError: false,

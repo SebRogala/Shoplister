@@ -59,6 +59,11 @@ class ShoppingListItem
         $this->section = $section;
     }
 
+    public function getShoppingList(): ShoppingList
+    {
+        return $this->list;
+    }
+
     public function updateListTimestamp(): void
     {
         $this->list->setUpdatedAt();
