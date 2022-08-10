@@ -27,7 +27,7 @@ class DbalListItemQuery implements ListItemQuery
     public function findAll(string $ownerId): ?array
     {
         $res = $this->connection->fetchAllAssociative(
-            "SELECT id, name, is_closed, created_at, updated_at, counter_of_items FROM shopping_list WHERE owner_id = :id ORDER BY created_at DESC",
+            "SELECT id, name, is_closed, created_at, updated_at, counter_of_items FROM shopping_list WHERE owner_id = :id ORDER BY updated_at DESC",
             [
                 'id' => $ownerId,
             ]

@@ -25,13 +25,10 @@
                 Nazwa
             </th>
             <th class="text-left">
-                Ilość
+                Pozycje
             </th>
             <th class="text-left">
                 Data modyfikacji
-            </th>
-            <th class="text-left">
-                Data utworzenia
             </th>
             <th class="text-left">
                 Akcje
@@ -46,10 +43,9 @@
             <td>{{ item.name }}</td>
             <td>{{ item.counterOfItems }}</td>
             <td>{{ $datetime(item.updatedAt) }}</td>
-            <td>{{ $datetime(item.createdAt) }}</td>
             <td>
                 <v-btn
-                    size="small"
+                    size="x-small"
                     variant="tonal"
                     icon="mdi-playlist-plus"
                     :to="{name: 'shopping-list-id', params: {id: item.id}}"
