@@ -15,8 +15,9 @@ class CreateShoppingListAction extends AbstractController
     public function index(Request $request, CommandBus $commandBus): Response
     {
         $name = $request->get('name');
+        $shopId = $request->get('shopId');
 
-        $command = new CreateShoppingList($this->getUser(), $name, false);
+        $command = new CreateShoppingList($this->getUser(), $name, $shopId, false);
         $commandBus->handle($command);
 
         return new Response(null, 201);

@@ -1,21 +1,40 @@
 <template>
-    <v-row class="align-center">
-        <v-btn
-            class="ma-2"
-            color="#81C784"
-            @click="createShoppingList"
-            icon="mdi-plus"
-        ></v-btn>
-        <v-text-field
-            class="mr-2"
-            label="Nazwa listy (opcjonalne)"
-            variant="outlined"
-            density="comfortable"
-            hide-details="auto"
-            v-model="newShoppingListName"
-        ></v-text-field>
+    <v-row>
+        <v-col>
+            <v-text-field
+                label="Nazwa listy (opcjonalne)"
+                variant="outlined"
+                density="comfortable"
+                hide-details="auto"
+                v-model="newShoppingListName"
+            ></v-text-field>
+        </v-col>
     </v-row>
-
+    <v-row>
+        <v-col @click="loadShops">
+            <v-autocomplete
+                variant="outlined"
+                label="Sklep (opcjonalne)"
+                density="comfortable"
+                hide-details="auto"
+                item-title="name"
+                item-value="id"
+                v-model="newShoppingListShopId"
+                :items="shops"
+            ></v-autocomplete>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col class="d-flex justify-end">
+            <v-btn
+                variant="tonal"
+                color="success"
+                @click="createShoppingList"
+            >
+                Utwórz
+            </v-btn>
+        </v-col>
+    </v-row>
 
 
     <v-table fixed-header class="mt-4">
@@ -64,6 +83,8 @@ export default {
         return {
             shoppingList: [],
             newShoppingListName: "",
+            newShoppingListShopId: "",
+            shops: [],
         }
     },
     mounted() {
@@ -71,7 +92,10 @@ export default {
     },
     methods: {
         createShoppingList() {
-            this.$api.post('/shopping_list', this.$api.formData({name: this.newShoppingListName})).then(res => {
+            this.$api.post('/shopping_list', this.$api.formData({
+                name: this.newShoppingListName,
+                shopId: this.newShoppingListShopId
+            })).then(() => {
                 this.loadShoppingList();
                 this.newShoppingListName = "";
             });
@@ -79,6 +103,16 @@ export default {
         loadShoppingList() {
             this.$api.get('/shopping-list').then(res => {
                 this.shoppingList = res.data;
+            });
+        },
+        loadShops() {
+            this.$api.get('/shops').then(res => {
+                this.shops = res.data.map(shop => {
+                    return {
+                        id: shop.id,
+                        name: `${shop.name} (${shop.address})`
+                    }
+                });
             });
         }
     }

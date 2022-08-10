@@ -6,7 +6,7 @@ use App\Domain\User;
 
 class CreateShoppingList
 {
-    public function __construct(private User $owner, private ?string $name, private ?bool $isClosed){}
+    public function __construct(private User $owner, private ?string $name, private ?string $shopId, private ?bool $isClosed){}
 
     /**
      * @return bool|null
@@ -22,6 +22,14 @@ class CreateShoppingList
     public function name(): ?string
     {
         return $this->name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function shopId(): ?string
+    {
+        return $this->shopId;
     }
 
     /**

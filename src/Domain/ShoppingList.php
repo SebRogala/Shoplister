@@ -30,6 +30,10 @@ class ShoppingList
     #[ORM\ManyToOne(targetEntity: "User", inversedBy: "shoppingLists")]
     private User $owner;
 
+    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(targetEntity: "Shop")]
+    private ?Shop $shop;
+
     #[ORM\OneToMany(
         mappedBy: "list",
         targetEntity: "ShoppingListItem",
@@ -39,7 +43,7 @@ class ShoppingList
 
     use Timestamps;
 
-    public function __construct(User $owner, ?string $name, ?bool $isClosed)
+    public function __construct(User $owner, ?string $name, ?Shop $shop, ?bool $isClosed)
     {
         $this->id = Uuid::new();
         $this->items = new ArrayCollection();
@@ -48,6 +52,7 @@ class ShoppingList
         $this->isClosed = $isClosed;
         $this->name = $name;
         $this->owner = $owner;
+        $this->shop = $shop;
         $this->timestamps();
     }
 
