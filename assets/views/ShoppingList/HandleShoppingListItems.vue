@@ -1,21 +1,11 @@
 <template>
     <v-row class="mb-3">
         <v-col class="d-flex align-center text-center justify-center">01.08.2022, 14:39:17</v-col>
-        <v-col cols="5">
-            <v-switch
-                class="justify-end v-switch--label-below"
-                v-model="addMode"
-                label="Dodawanie"
-                color="success"
-                hide-details
-            ></v-switch>
-        </v-col>
     </v-row>
 
     <v-scroll-y-transition>
         <v-card
             class="mb-6"
-            v-show="addMode"
             transition="slide-y-transition"
         >
             <v-alert type="error" v-if="isHttpError">{{ httpError }}</v-alert>
@@ -116,13 +106,12 @@ import StandardShoppingList from "./Components/StandardShoppingList";
 import NewShoppingListItemUnit from "./Components/NewShoppingListItemUnit";
 
 export default {
-    name: 'ShoppingListId',
+    name: 'HandleShoppingListItems',
     components: {StandardShoppingList, NewShoppingListItemUnit},
     data() {
         return {
             isHttpError: false,
             httpError: "",
-            addMode: false,
             newItemName: "",
             newItemQuantity: null,
             newItemUnit: "",

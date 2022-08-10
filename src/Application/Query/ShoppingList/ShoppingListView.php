@@ -4,7 +4,7 @@ namespace App\Application\Query\ShoppingList;
 
 use App\Application\Query\QueryView;
 
-class ListItemView implements QueryView
+class ShoppingListView implements QueryView
 {
     public function __construct(
         private readonly string $id,

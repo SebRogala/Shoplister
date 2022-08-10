@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CreateShoppingListItemAction extends AbstractController
+class AddItemIntoShoppingListAction extends AbstractController
 {
-    #[Route("/shopping-list/{listId}/item", name: "shopping_list_item.create", methods: ["POST"])]
+    #[Route("/shopping-list/{listId}/item", name: "shopping_list_add_item.create", methods: ["POST"])]
     public function index(Request $request, string $listId, CommandBus $commandBus): Response
     {
         $command = new CreateShoppingListItem(

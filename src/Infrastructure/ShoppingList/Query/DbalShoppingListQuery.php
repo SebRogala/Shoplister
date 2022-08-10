@@ -2,17 +2,17 @@
 
 namespace App\Infrastructure\ShoppingList\Query;
 
-use App\Application\Query\ShoppingList\ListItemQuery;
-use App\Application\Query\ShoppingList\ListItemView;
+use App\Application\Query\ShoppingList\ShoppingListQuery;
+use App\Application\Query\ShoppingList\ShoppingListView;
 use Doctrine\DBAL\Connection;
 
-class DbalListItemQuery implements ListItemQuery
+class DbalShoppingListQuery implements ShoppingListQuery
 {
     public function __construct(private Connection $connection)
     {
     }
 
-    public function item(string $id): ListItemView
+    public function item(string $id): ShoppingListView
     {
         $res = $this->connection->fetchAssociative(
             "SELECT id, name, is_closed, created_at, updated_at, counter_of_items FROM shopping_list WHERE id = :id",
@@ -21,7 +21,7 @@ class DbalListItemQuery implements ListItemQuery
             ]
         );
 
-        return ListItemView::fromArray($res);
+        return ShoppingListView::fromArray($res);
     }
 
     public function findAll(string $ownerId): ?array
@@ -34,7 +34,7 @@ class DbalListItemQuery implements ListItemQuery
         );
 
         return array_map(function (array $list) {
-            return ListItemView::fromArray($list);
+            return ShoppingListView::fromArray($list);
         }, $res);
     }
 }

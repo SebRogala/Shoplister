@@ -30,6 +30,6 @@ services:
             - [ register, [ '@App\Application\Command\ShoppingList\ToggleIsDoneOnShoppingListItemHandler' ] ]
             - [ register, [ '@App\Application\Command\Shop\CreateShopHandler' ] ]
 
-    App\Application\Query\ShoppingList\ListItemQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemQuery'
+    App\Application\Query\ShoppingList\ShoppingListQuery: '@App\Infrastructure\ShoppingList\Query\DbalShoppingListQuery'
     App\Application\Query\ShoppingList\ListItemsQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemsQuery'
     App\Application\Query\Shop\ShopsQuery: '@App\Infrastructure\Shop\Query\DbalShopsQuery'

@@ -2,9 +2,9 @@
 
 namespace App\Application\Query\ShoppingList;
 
-interface ListItemQuery
+interface ShoppingListQuery
 {
-    public function item(string $id): ListItemView;
+    public function item(string $id): ShoppingListView;
 
     public function findAll(string $ownerId): ?array;
 }
