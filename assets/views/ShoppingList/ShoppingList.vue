@@ -16,19 +16,49 @@
         ></v-text-field>
     </v-row>
 
-    <v-list class="mt-4">
-        <v-list-item
-            v-for="(item, i) in shoppingList"
-            :key="i"
-            :value="item"
-            :to="{name: 'shopping-list-id', params: {id: item.id}}"
+
+
+    <v-table fixed-header class="mt-4">
+        <thead>
+        <tr>
+            <th class="text-left">
+                Nazwa
+            </th>
+            <th class="text-left">
+                Ilość
+            </th>
+            <th class="text-left">
+                Data modyfikacji
+            </th>
+            <th class="text-left">
+                Data utworzenia
+            </th>
+            <th class="text-left">
+                Akcje
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr
+            v-for="item in shoppingList"
+            :key="item.id"
         >
-            <v-list-item-title>
-                <template v-if="item.name">{{ item.name }} -</template>
-                {{ $datetime(item.createdAt) }}
-            </v-list-item-title>
-        </v-list-item>
-    </v-list>
+            <td>{{ item.name }}</td>
+            <td>{{ item.counterOfItems }}</td>
+            <td>{{ $datetime(item.updatedAt) }}</td>
+            <td>{{ $datetime(item.createdAt) }}</td>
+            <td>
+                <v-btn
+                    size="small"
+                    variant="tonal"
+                    icon="mdi-playlist-plus"
+                    :to="{name: 'shopping-list-id', params: {id: item.id}}"
+                >
+                </v-btn>
+            </td>
+        </tr>
+        </tbody>
+    </v-table>
 </template>
 
 <script>

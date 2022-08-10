@@ -16,6 +16,7 @@ class ToggleIsDoneOnShoppingListItemHandler
         $item = $this->shoppingListItemRepository->findOneBy(['id' => $command->id()]);
 
         $item->toggleIsDone();
+        $item->updateListTimestamp();
 
         $this->shoppingListItemRepository->add($item, true);
     }

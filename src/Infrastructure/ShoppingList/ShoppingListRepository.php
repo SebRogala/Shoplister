@@ -39,6 +39,15 @@ class ShoppingListRepository extends ServiceEntityRepository
         }
     }
 
+    public function updateCounterOfCurrentItems(ShoppingList $entity, bool $flush = false): void
+    {
+        $entity->updateCounter();
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return ShoppingList[] Returns an array of ShoppingList objects
 //     */

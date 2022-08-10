@@ -59,6 +59,11 @@ class ShoppingListItem
         $this->section = $section;
     }
 
+    public function updateListTimestamp(): void
+    {
+        $this->list->setUpdatedAt();
+    }
+
     public function toggleIsDone(): void
     {
         $this->isDone = !$this->isDone;

@@ -10,7 +10,9 @@ class ListItemView implements QueryView
         private readonly string $id,
         private readonly string $name,
         private readonly bool $isClosed,
-        private readonly \DateTimeImmutable $createdAt
+        private readonly int $counterOfItems,
+        private readonly \DateTimeImmutable $createdAt,
+        private readonly \DateTimeImmutable $updatedAt,
     ) {
     }
 
@@ -20,7 +22,9 @@ class ListItemView implements QueryView
             'id' => $this->id,
             'name' => $this->name,
             'isClosed' => $this->isClosed,
-            'createdAt' => $this->createdAt->format(\DateTime::ATOM)
+            'counterOfItems' => $this->counterOfItems,
+            'createdAt' => $this->createdAt->format(\DateTime::ATOM),
+            'updatedAt' => $this->updatedAt->format(\DateTime::ATOM),
         ];
     }
 
@@ -30,7 +34,9 @@ class ListItemView implements QueryView
             $data['id'],
             $data['name'],
             $data['is_closed'],
-            new \DateTimeImmutable($data['created_at'])
+            $data['counter_of_items'],
+            new \DateTimeImmutable($data['created_at']),
+            new \DateTimeImmutable($data['updated_at']),
         );
     }
 }

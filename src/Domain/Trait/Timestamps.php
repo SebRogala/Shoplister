@@ -15,6 +15,11 @@ trait Timestamps
     private function timestamps(): void
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->setUpdatedAt();
+    }
+
+    public function setUpdatedAt(): void
+    {
         $this->updatedAt = new \DateTimeImmutable();
     }
 }

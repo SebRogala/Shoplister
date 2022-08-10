@@ -27,5 +27,6 @@ class CreateShoppingListItemHandler
         );
 
         $this->shoppingListItemRepository->add($shoppingListItem, true);
+        $this->listRepository->updateCounterOfCurrentItems($list, true);
     }
 }
