@@ -38,6 +38,8 @@
                             label="Dział"
                             density="comfortable"
                             hide-details="auto"
+                            item-title="name"
+                            item-value="id"
                             v-model="newItemSection"
                             :items="possibleSections"
                         ></v-autocomplete>
@@ -115,13 +117,16 @@ export default {
             newItemName: "",
             newItemQuantity: null,
             newItemUnit: "",
-            newItemSection: "",
+            newItemSection: "ba72030e-0cf2-42c4-a88f-b20340c93960",
             shoppingListItems: [],
-            possibleSections: ['Pieczywo', 'Przekąski słodkie', 'Owoce', 'Warzywa', 'Wędliny', 'Mięso']
+            possibleSections: []
         }
     },
     mounted() {
         this.loadShoppingListItems();
+        this.$api.get(`/shop-sections`).then(res => {
+            this.possibleSections = res.data;
+        });
     },
     methods: {
         pickNewItemUnit(unit) {

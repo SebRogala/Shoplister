@@ -34,3 +34,4 @@ services:
     App\Application\Query\ShoppingList\ShoppingListQuery: '@App\Infrastructure\ShoppingList\Query\DbalShoppingListQuery'
     App\Application\Query\ShoppingList\ListItemsQuery: '@App\Infrastructure\ShoppingList\Query\DbalListItemsQuery'
     App\Application\Query\Shop\ShopsQuery: '@App\Infrastructure\Shop\Query\DbalShopsQuery'
+    App\Application\Query\Shop\ShopSectionsQuery: '@App\Infrastructure\Shop\Query\DbalShopSectionsQuery'
