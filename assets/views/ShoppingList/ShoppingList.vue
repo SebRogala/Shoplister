@@ -70,6 +70,13 @@
                     :to="{name: 'shopping-list-id', params: {id: item.id}}"
                 >
                 </v-btn>
+                <v-btn
+                    size="x-small"
+                    variant="tonal"
+                    icon="mdi-share"
+                    :to="{name: 'shopping-list-view', params: {id: item.id}}"
+                >
+                </v-btn>
             </td>
         </tr>
         </tbody>

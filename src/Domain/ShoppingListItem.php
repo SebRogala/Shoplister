@@ -25,8 +25,9 @@ class ShoppingListItem
     #[ORM\Column(length: 50)]
     private string $unit;
 
-    #[ORM\Column(length: 50)]
-    private string $section;
+    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(targetEntity: "ShopSection")]
+    private ?ShopSection $section;
 
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\ManyToOne(targetEntity: "ShoppingList", inversedBy: "items")]
@@ -41,7 +42,7 @@ class ShoppingListItem
     #[ORM\Column(type: 'datetime_immutable')]
     private \DateTimeImmutable $updatedAt;
 
-    public function __construct(ShoppingList $list, string $name, float $quantity, string $unit, string $section)
+    public function __construct(ShoppingList $list, string $name, float $quantity, string $unit, ?ShopSection $section)
     {
         $this->id = Uuid::new();
         $this->createdAt = new \DateTimeImmutable();

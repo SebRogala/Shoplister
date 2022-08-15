@@ -22,6 +22,9 @@ class Shop
     #[ORM\Column(length: 255)]
     private string $address;
 
+    #[ORM\Column(type: 'array')]
+    private array $defaultSectionOrder;
+
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\ManyToOne(targetEntity: "User")]
     private User $creator;
