@@ -22,4 +22,14 @@ class DbalShopsQuery implements ShopsQuery
             return ShopsView::fromArray($list);
         }, $res);
     }
+
+    public function getShopsSectionsOrder($shopId): ?array
+    {
+        return explode(',', $this->connection->fetchOne(
+            "SELECT default_section_order FROM shop WHERE id = :id",
+            [
+                'id' => $shopId,
+            ]
+        ));
+    }
 }

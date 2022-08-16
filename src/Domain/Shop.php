@@ -22,8 +22,8 @@ class Shop
     #[ORM\Column(length: 255)]
     private string $address;
 
-    #[ORM\Column(type: 'array')]
-    private array $defaultSectionOrder;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $defaultSectionOrder = null;
 
     #[ORM\JoinColumn(nullable: false)]
     #[ORM\ManyToOne(targetEntity: "User")]
@@ -47,5 +47,13 @@ class Shop
 
         Assert::stringNotEmpty($address, "Address cannot be empty");
         $this->address = $address;
+    }
+
+    /**
+     * @param string $defaultSectionOrder
+     */
+    public function setDefaultSectionOrder(string $defaultSectionOrder): void
+    {
+        $this->defaultSectionOrder = $defaultSectionOrder;
     }
 }

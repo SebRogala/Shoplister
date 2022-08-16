@@ -1,6 +1,13 @@
 <template>
     <v-row>
         <v-col>
+            <v-btn @click="setShopDefaultSectionsOrder">
+                Update
+            </v-btn>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col>
             <draggable
                 class="list-group"
                 :list="sortedSections"
@@ -24,18 +31,18 @@
                     <div class="mb-2 bg-grey-lighten-3 pa-3">{{ element.name }}</div>
                 </template>
             </draggable>
-        </v-col>>
+        </v-col>
+
     </v-row>
 </template>
 
 <script>
 import draggable from "vuedraggable";
+import {toRaw} from "vue";
 
 export default {
     name: 'ShopConfig',
-    components: {
-        draggable
-    },
+    components: {draggable},
     data() {
         return {
             sortedSections: [],
@@ -47,8 +54,15 @@ export default {
     },
     methods: {
         loadShoppingSections() {
-            this.$api.get('/shop-sections').then(res => {
-                this.unsortedSections = res.data;
+            this.$api.get(`/shop/${this.$route.params.id}/sections`).then(res => {
+                this.sortedSections = res.data.orderedSections;
+                this.unsortedSections = res.data.otherSections;
+            });
+        },
+        setShopDefaultSectionsOrder() {
+            this.$api.post(`/shop/${this.$route.params.id}/set-default-sections-order`, this.$api.formData({
+                sectionsOrder: toRaw(this.sortedSections).map(item => item.id)
+            })).then(() => {
             });
         },
     }
