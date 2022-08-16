@@ -2,20 +2,25 @@
 
 namespace App\Infrastructure\ShoppingList\Query;
 
+use App\Application\Query\Shop\ShopsQuery;
 use App\Application\Query\ShoppingList\ListItemsQuery;
 use App\Application\Query\ShoppingList\ListItemsView;
+use App\Application\Query\ShoppingList\ShoppingListQuery;
 use Doctrine\DBAL\Connection;
 
 class DbalListItemsQuery implements ListItemsQuery
 {
-    public function __construct(private Connection $connection)
-    {
+    public function __construct(
+        private Connection $connection,
+        private ShoppingListQuery $shoppingListQuery,
+        private ShopsQuery $shopsQuery
+    ) {
     }
 
     public function findAll(string $listId): ?array
     {
         $res = $this->connection->fetchAllAssociative(
-            "SELECT i.id, i.name, i.quantity, i.unit, i.is_done, i.updated_at, s.name as section FROM shopping_list_item i INNER JOIN shop_section s ON i.section_id = s.id WHERE list_id = :id ORDER BY updated_at DESC",
+            "SELECT id, name, quantity, unit, is_done, updated_at, section_id FROM shopping_list_item WHERE list_id = :id ORDER BY updated_at DESC",
             [
                 'id' => $listId,
             ]
@@ -29,25 +34,49 @@ class DbalListItemsQuery implements ListItemsQuery
 
     public function findAllWithGrouped(string $listId): ?array
     {
-        $res = $this->connection->fetchAllAssociative(
-            "SELECT id, name, quantity, unit, is_done, updated_at, section FROM shopping_list_item WHERE list_id = :id ORDER BY is_done ASC , updated_at DESC",
+        $shopId = $this->shoppingListQuery->findAssignedShopId($listId);
+        $orderedSections = $this->shopsQuery->getShopsSectionsOrder($shopId);
+
+        $fetchedShoppingListItems = $this->connection->fetchAllAssociative(
+            "SELECT id, name, quantity, unit, is_done, updated_at, section_id FROM shopping_list_item WHERE list_id = :id ORDER BY is_done ASC , updated_at DESC",
             [
                 'id' => $listId,
             ]
         );
 
-        $result = [];
-        foreach ($res as $item) {
-            $result[$item['section']][] = ListItemsView::fromArray($item);
+        $groupedShoppingListItems = [];
+        foreach ($fetchedShoppingListItems as $item) {
+            $groupedShoppingListItems[$item['section_id']][] = ListItemsView::fromArray($item);
         }
 
-        $finalRes = [];
-        foreach ($result as $groupedItems) {
+        $orderedAndGroupedItems = [];
+        if (!empty($orderedSections)) {
+            $groupedShoppingListItemsKeys = array_keys($groupedShoppingListItems);
+            foreach ($orderedSections as $orderedSectionId) {
+                if (in_array($orderedSectionId, $groupedShoppingListItemsKeys)) {
+                    $orderedAndGroupedItems[$orderedSectionId] = $groupedShoppingListItems[$orderedSectionId];
+                    unset($groupedShoppingListItems[$orderedSectionId]);
+                }
+            }
+        }
+        $orderedAndGroupedItems = array_merge($orderedAndGroupedItems, $groupedShoppingListItems);
+
+        $groupedByAllDone = [];
+        foreach ($orderedAndGroupedItems as $id => $list) {
+            if ($list[0]->isDone()) {
+                $groupedByAllDone[$id] = $list;
+                unset($orderedAndGroupedItems[$id]);
+            }
+        }
+        $groupedByAllDone = array_merge($orderedAndGroupedItems, $groupedByAllDone);
+
+        $flattenArrayOfItems = [];
+        foreach ($groupedByAllDone as $groupedItems) {
             foreach ($groupedItems as $listItem) {
-                $finalRes[] = $listItem;
+                $flattenArrayOfItems[] = $listItem;
             }
         }
 
-        return $finalRes;
+        return $flattenArrayOfItems;
     }
 }

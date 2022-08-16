@@ -14,7 +14,7 @@ class ViewShoppingListAction extends AbstractController
     #[Route("/shopping-list/{listId}/view-items", name: "shopping_list_view_items.get", methods: ["GET"])]
     public function index(string $listId, ListItemsQuery $listItemsQuery): Response
     {
-        $items = $listItemsQuery->findAll($listId);
+        $items = $listItemsQuery->findAllWithGrouped($listId);
 
         return new JsonResponse(array_map(function (ListItemsView $item) {
             return $item->toArray();

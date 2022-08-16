@@ -16,6 +16,11 @@ class ListItemsView implements QueryView
     ) {
     }
 
+    public function isDone(): bool
+    {
+        return $this->isDone;
+    }
+
     public function toArray(): array
     {
         return [

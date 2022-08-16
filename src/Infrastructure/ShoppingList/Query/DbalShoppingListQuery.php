@@ -24,6 +24,16 @@ class DbalShoppingListQuery implements ShoppingListQuery
         return ShoppingListView::fromArray($res);
     }
 
+    public function findAssignedShopId($id): ?string
+    {
+        return $this->connection->fetchOne(
+            "SELECT shop_id as shopId FROM shopping_list WHERE id = :id",
+            [
+                'id' => $id,
+            ]
+        );
+    }
+
     public function findAll(string $ownerId): ?array
     {
         $res = $this->connection->fetchAllAssociative(
