@@ -93,14 +93,7 @@ ENV SYMFONY_VERSION ${SYMFONY_VERSION}
 RUN composer create-project "${SKELETON} ${SYMFONY_VERSION}" . --stability=$STABILITY --prefer-dist --no-dev --no-progress --no-interaction; \
 	composer clear-cache
 
-###> recipes ###
-###> doctrine/doctrine-bundle ###
-RUN apk add --no-cache --virtual .pgsql-deps postgresql-dev; \
-	docker-php-ext-install -j$(nproc) pdo_pgsql; \
-	apk add --no-cache --virtual .pgsql-rundeps so:libpq.so.5; \
-	apk del .pgsql-deps
-###< doctrine/doctrine-bundle ###
-###< recipes ###
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY . .
 

@@ -18,11 +18,13 @@ services:
       start_period: 30s
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-      DATABASE_URL: postgresql://${POSTGRES_USER:-symfony}:${POSTGRES_PASSWORD:-ChangeMe}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-13}
+      DATABASE_URL: mysql://symfony:ChangeMe@database:3306/app?serverVersion=mariadb-10.5.16&charset=utf8mb4
       # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
       MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
       MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeMe!}
+    depends_on:
+      - database
 
   caddy:
     build:
@@ -56,19 +58,24 @@ services:
 ###> symfony/mercure-bundle ###
 ###< symfony/mercure-bundle ###
 
-###> doctrine/doctrine-bundle ###
+
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: mariadb:10.5.16
+    command: ["--default-authentication-plugin=mysql_native_password"]
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
-      POSTGRES_USER: ${POSTGRES_USER:-symfony}
+      MYSQL_DATABASE: 'app'
+      MYSQL_USER: 'symfony'
+      MYSQL_PASSWORD: 'ChangeMe'
+      MYSQL_ROOT_PASSWORD: 'ChangeMe'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - db-data-mysql:/var/lib/mysql:rw
 
 volumes:
   php_socket:
@@ -78,5 +85,5 @@ volumes:
 ###< symfony/mercure-bundle ###
 
 ###> doctrine/doctrine-bundle ###
-  db-data:
+  db-data-mysql:
 ###< doctrine/doctrine-bundle ###
