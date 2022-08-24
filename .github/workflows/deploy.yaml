@@ -4,11 +4,30 @@ on:
         branches:
             - main
 jobs:
-    build:
-        name: Build
+    build_front:
+        name: Build Front (Vue)
         runs-on: ubuntu-latest
         steps:
-            - uses: DerYeger/yarn-setup-action@master
-              with:
-                  node-version: 14
-            - run: yarn build
+            -   uses: actions/checkout@v3
+            -   uses: DerYeger/yarn-setup-action@master
+                with:
+                    node-version: 14
+            -   run: yarn build
+    deploy:
+        name: Connect to Server and deploy
+        runs-on: ubuntu-latest
+        needs: build_front
+        steps:
+            -   name: execute
+                uses: appleboy/ssh-action@master
+                with:
+                    host: ${{ secrets.HOST }}
+                    username: ${{ secrets.USERNAME }}
+                    key: ${{ secrets.SERVER_KEY }}
+                    port: ${{ secrets.PORT }}
+                    script: |
+                        cd ${{ secrets.HOSTING_DIR }}
+                        git fetch origin main
+                        git reset --hard origin/main
+                        git clean -fdx
+                        ln -s ./public private_html
