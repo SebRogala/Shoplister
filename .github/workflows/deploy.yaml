@@ -1,0 +1,14 @@
+name: Deploy
+on:
+    push:
+        branches:
+            - main
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: DerYeger/yarn-setup-action@master
+              with:
+                  node-version: 14
+            - run: yarn build
