@@ -65,4 +65,4 @@ jobs:
                     port: ${{ secrets.PORT }}
                     key: ${{ secrets.SERVER_KEY }}
                     source: "./public/build"
-                    target: "${{ secrets.HOSTING_DIR }}/public/build"
+                    target: "${{ secrets.HOSTING_DIR }}"
