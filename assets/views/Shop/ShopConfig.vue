@@ -13,6 +13,8 @@
                 :list="sortedSections"
                 group="sections"
                 itemKey="name"
+                :delay="150"
+                :delayOnTouchOnly="true"
             >
                 <template #item="{ element }">
                     <div class="mb-2 bg-grey-lighten-3 pa-3">{{ element.name }}</div>
@@ -26,13 +28,14 @@
                 :list="unsortedSections"
                 group="sections"
                 itemKey="name"
+                :delay="150"
+                :delayOnTouchOnly="true"
             >
                 <template #item="{ element }">
                     <div class="mb-2 bg-grey-lighten-3 pa-3">{{ element.name }}</div>
                 </template>
             </draggable>
         </v-col>
-
     </v-row>
 </template>
 
