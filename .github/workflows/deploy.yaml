@@ -70,4 +70,3 @@ jobs:
                     target: "${{ secrets.HOSTING_DIR }}"
             -   name: Clear cache
                 uses: skjolber/tidy-cache-github-action@v1
-                if: steps.build-front-cache.outputs.cache-hit != 'true'
