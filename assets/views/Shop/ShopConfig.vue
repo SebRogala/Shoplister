@@ -6,8 +6,8 @@
             </v-btn>
         </v-col>
     </v-row>
-    <v-row>
-        <v-col>
+    <v-row class="shop-config__section-container">
+        <v-col class="shop-config__section-col">
             <draggable
                 class="list-group"
                 :list="sortedSections"
@@ -20,7 +20,7 @@
             </draggable>
         </v-col>
 
-        <v-col>
+        <v-col class="shop-config__section-col">
             <draggable
                 class="list-group"
                 :list="unsortedSections"
@@ -68,3 +68,14 @@ export default {
     }
 }
 </script>
+
+<style>
+.shop-config__section-container {
+
+}
+
+.shop-config__section-col {
+    overflow-y: scroll;
+    max-height: 75vh;
+}
+</style>

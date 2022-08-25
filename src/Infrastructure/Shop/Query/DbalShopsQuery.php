@@ -25,11 +25,13 @@ class DbalShopsQuery implements ShopsQuery
 
     public function getShopsSectionsOrder($shopId): ?array
     {
-        return explode(',', $this->connection->fetchOne(
+        $result = $this->connection->fetchOne(
             "SELECT default_section_order FROM shop WHERE id = :id",
             [
                 'id' => $shopId,
             ]
-        ));
+        );
+
+        return empty($result) ? [] : explode(',', trim($result, ','));
     }
 }

@@ -33,6 +33,7 @@ class GetShopSectionsConfigAction extends AbstractController
                 }
             }
         }
+        ;
 
         return new JsonResponse([
             'orderedSections' => $orderedSections,
