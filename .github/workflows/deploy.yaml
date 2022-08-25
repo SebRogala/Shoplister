@@ -9,11 +9,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
-            - name: Cache Build
-              uses: actions/cache@v3
-              with:
-                  path: ./public/build
-                  key: build-cache
+            -   name: Cache Front Build
+                uses: actions/cache@v3
+                with:
+                    path: ./public/build
+                    key: build-cache
             -   uses: DerYeger/yarn-setup-action@master
                 with:
                     node-version: 14
@@ -23,7 +23,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: build_front
         steps:
-            -   name: execute
+            -   name: Execute
                 uses: appleboy/ssh-action@master
                 with:
                     host: ${{ secrets.HOST }}
@@ -52,12 +52,17 @@ jobs:
         runs-on: ubuntu-latest
         needs: update_php
         steps:
-        -   name: copy built files
-            uses: appleboy/scp-action@master
-            with:
-                host: ${{ secrets.HOST }}
-                username: ${{ secrets.USERNAME }}
-                port: ${{ secrets.PORT }}
-                key: ${{ secrets.SERVER_KEY }}
-                source: "./public/build"
-                target: "${{ secrets.HOSTING_DIR }}/public/build"
+            -   name: Restore Front build
+                uses: actions/cache@v3
+                with:
+                    path: ./public/build
+                    key: build-cache
+            -   name: Copy built files
+                uses: appleboy/scp-action@master
+                with:
+                    host: ${{ secrets.HOST }}
+                    username: ${{ secrets.USERNAME }}
+                    port: ${{ secrets.PORT }}
+                    key: ${{ secrets.SERVER_KEY }}
+                    source: "./public/build"
+                    target: "${{ secrets.HOSTING_DIR }}/public/build"
