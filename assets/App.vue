@@ -15,6 +15,13 @@
                 >
                     <v-list-item-title v-text="item.title"></v-list-item-title>
                 </v-list-item>
+                <v-divider/>
+                <v-list-item
+                    active-color="primary"
+                    href="/logout"
+                >
+                    <v-list-item-title>Wyloguj</v-list-item-title>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
