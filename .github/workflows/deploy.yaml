@@ -14,7 +14,7 @@ jobs:
                 id: build-front-cache
                 with:
                     path: ./public/build
-                    key: build-cache
+                    key: ${{ github.run_id }}-build-cache
             -   uses: DerYeger/yarn-setup-action@master
                 with:
                     node-version: 14
@@ -58,7 +58,7 @@ jobs:
                 id: build-front-cache
                 with:
                     path: ./public/build
-                    key: build-cache
+                    key: ${{ github.run_id }}-build-cache
             -   name: Copy built files
                 uses: appleboy/scp-action@master
                 with:
@@ -68,5 +68,3 @@ jobs:
                     key: ${{ secrets.SERVER_KEY }}
                     source: "./public/build"
                     target: "${{ secrets.HOSTING_DIR }}"
-            -   name: Clear cache
-                uses: skjolber/tidy-cache-github-action@v1
