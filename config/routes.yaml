@@ -13,3 +13,7 @@ shopping_list_actions:
 shop_actions:
     resource: ../src/Presentation/Shop/Action
     type: attribute
+
+recipe_actions:
+    resource: ../src/Presentation/Recipe/Action
+    type: attribute

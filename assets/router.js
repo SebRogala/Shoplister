@@ -7,6 +7,7 @@ import HandleShoppingListItems from "./views/ShoppingList/HandleShoppingListItem
 import Shops from "./views/Shop/Shops";
 import ShopConfig from "./views/Shop/ShopConfig";
 import ViewShoppingList from "./views/ShoppingList/ViewShoppingList";
+import Recipes from "./views/Recipe/Recipes";
 
 const routes = [
     {path: '/', name: "home", component: Home},
@@ -14,8 +15,9 @@ const routes = [
     {path: '/shopping-list', name: "shopping-list", component: ShoppingList},
     {path: '/shopping-list/:id/handle', name: "shopping-list-id", component: HandleShoppingListItems},
     {path: '/shopping-list/:id/view', name: "shopping-list-view", component: ViewShoppingList},
-    {path: '/shop',  name: "shops",component: Shops},
+    {path: '/shop', name: "shops", component: Shops},
     {path: '/shop/:id/config', name: "shop-config", component: ShopConfig},
+    {path: '/recipe', name: "recipes", component: Recipes},
 ]
 
 const router = createRouter({

@@ -56,7 +56,11 @@ export default {
                 {
                     title: "Sklepy",
                     value: '/shop'
-                }
+                },
+                {
+                    title: "Przepisy",
+                    value: '/recipe'
+                },
             ]
         }
     }
