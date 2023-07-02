@@ -1,0 +1,37 @@
+ii  php-common                     2:92+ubuntu20.04.1+deb.sury.org+2     all          Common files for PHP packages
+ii  php7.3-bcmath                  7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        Bcmath module for PHP
+ii  php7.3-cli                     7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        command-line interpreter for the PHP scripting language
+ii  php7.3-common                  7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        documentation, examples and common module for PHP
+ii  php7.3-curl                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        CURL module for PHP
+ii  php7.3-fpm                     7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        server-side, HTML-embedded scripting language (FPM-CGI binary)
+ii  php7.3-gd                      7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        GD module for PHP
+ii  php7.3-imap                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        IMAP module for PHP
+ii  php7.3-intl                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        Internationalisation module for PHP
+ii  php7.3-json                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        JSON module for PHP
+ii  php7.3-ldap                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        LDAP module for PHP
+ii  php7.3-mbstring                7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        MBSTRING module for PHP
+ii  php7.3-mysql                   7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        MySQL module for PHP
+ii  php7.3-opcache                 7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        Zend OpCache module for PHP
+ii  php7.3-pgsql                   7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        PostgreSQL module for PHP
+ii  php7.3-readline                7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        readline module for PHP
+ii  php7.3-soap                    7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        SOAP module for PHP
+ii  php7.3-xml                     7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        DOM, SimpleXML, WDDX, XML, and XSL module for PHP
+ii  php7.3-zip                     7.3.33-1+ubuntu20.04.1+deb.sury.org+1 amd64        Zip module for PHP
+ii  php7.4-bcmath                  7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        Bcmath module for PHP
+ii  php7.4-cli                     7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        command-line interpreter for the PHP scripting language
+ii  php7.4-common                  7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        documentation, examples and common module for PHP
+ii  php7.4-curl                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        CURL module for PHP
+ii  php7.4-fpm                     7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        server-side, HTML-embedded scripting language (FPM-CGI binary)
+ii  php7.4-gd                      7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        GD module for PHP
+ii  php7.4-imap                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        IMAP module for PHP
+ii  php7.4-intl                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        Internationalisation module for PHP
+ii  php7.4-json                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        JSON module for PHP
+ii  php7.4-ldap                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        LDAP module for PHP
+ii  php7.4-mbstring                7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        MBSTRING module for PHP
+ii  php7.4-mysql                   7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        MySQL module for PHP
+ii  php7.4-opcache                 7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        Zend OpCache module for PHP
+ii  php7.4-pgsql                   7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        PostgreSQL module for PHP
+ii  php7.4-readline                7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        readline module for PHP
+ii  php7.4-soap                    7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        SOAP module for PHP
+ii  php7.4-xml                     7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        DOM, SimpleXML, XML, and XSL module for PHP
+ii  php7.4-zip                     7.4.27-1+ubuntu20.04.1+deb.sury.org+1 amd64        Zip module for PHP

@@ -1,20 +1,11 @@
 {
-    "doctrine/annotations": {
-        "version": "1.13",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "1.10",
-            "ref": "64d8583af5ea57b7afa4aba4b159907f3a148b05"
-        }
-    },
     "doctrine/doctrine-bundle": {
-        "version": "2.7",
+        "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "2.4",
-            "ref": "ddddd8249dd55bbda16fa7a45bb7499ef6f8e90e"
+            "ref": "013b823e7fee65890b23e40f31e6667a1ac519ac"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -28,7 +19,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "3.1",
-            "ref": "ee609429c9ee23e22d6fa5728211768f51ed2818"
+            "ref": "1d01ec03c6ecbd67c3375c5478c9a423ae5d6a33"
         },
         "files": [
             "config/packages/doctrine_migrations.yaml",
@@ -36,7 +27,7 @@
         ]
     },
     "knpuniversity/oauth2-client-bundle": {
-        "version": "2.10",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
@@ -72,7 +63,7 @@
         ]
     },
     "symfony/flex": {
-        "version": "2.2",
+        "version": "2.3",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -103,7 +94,7 @@
         ]
     },
     "symfony/maker-bundle": {
-        "version": "1.44",
+        "version": "1.49",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -175,12 +166,12 @@
         ]
     },
     "symfony/webpack-encore-bundle": {
-        "version": "1.15",
+        "version": "1.17",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "1.10",
-            "ref": "2e458cc7e6f1df1dad890eb104b81e4f302c9bd4"
+            "ref": "eff2e505d4557c967b6710fe06bd947ba555cae5"
         },
         "files": [
             "assets/app.js",
@@ -194,6 +185,6 @@
         ]
     },
     "symfonycasts/verify-email-bundle": {
-        "version": "v1.11.0"
+        "version": "v1.13.0"
     }
 }
