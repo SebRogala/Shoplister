@@ -23,7 +23,7 @@ export default {
     <div>
         <v-alert
             type="success"
-        >Testing components
+        >Components
 
         </v-alert><v-alert
             type="success"
