@@ -23,7 +23,11 @@ export default {
     <div>
         <v-alert
             type="success"
-        >Testing components</v-alert>
+        >Testing components
+
+        </v-alert><v-alert
+            type="success"
+        >Testing GitHub Actions</v-alert>
 
         <v-text-field
             label="List name"
