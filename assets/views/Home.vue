@@ -25,9 +25,6 @@ export default {
             type="success"
         >Components
 
-        </v-alert><v-alert
-            type="success"
-        >Testing GitHub Actions</v-alert>
 
         <v-text-field
             label="List name"
