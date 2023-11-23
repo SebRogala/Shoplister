@@ -24,7 +24,7 @@ export default {
         <v-alert
             type="success"
         >Components
-
+        </v-alert>
 
         <v-text-field
             label="List name"
